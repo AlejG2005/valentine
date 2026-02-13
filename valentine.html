@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>¿Quieres ser mi Valentine?</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg, #ffd6e8, #ffc2d1);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    overflow: hidden;
+    text-align: center;
+    color: #5a3e4d;
+}
+
+.container {
+    background: rgba(255, 255, 255, 0.7);
+    padding: 35px;
+    border-radius: 25px;
+    width: 90%;
+    max-width: 420px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    position: relative;
+}
+
+img {
+    width: 220px;
+    height: 220px;
+    object-fit: cover;
+    border-radius: 25px;
+    margin-bottom: 20px;
+}
+
+p {
+    margin-bottom: 25px;
+    text-align: justify;
+    font-size: 14px;
+}
+
+h2 {
+    margin-bottom: 25px;
+    font-weight: 500;
+}
+
+.buttons {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+}
+
+button {
+    padding: 14px 30px;
+    font-size: 22px;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: font-size 0.25s ease;
+    font-weight: 500;
+}
+
+#yesBtn {
+    background-color: #ff4d88;
+    color: white;
+}
+
+#noBtn {
+    background-color: #d67a9c;
+    color: white;
+}
+
+.hidden {
+    display: none;
+}
+
+.success {
+    font-size: 22px;
+    margin-top: 20px;
+    font-weight: bold;
+}
+
+@keyframes fall {
+    to {
+        transform: translateY(110vh);
+        opacity: 0;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+    
+    <img id="mainImage" src="IMG_2038.jpg" alt="Imagen romántica">
+
+    <p>
+        Lamento mucho y me duele la discusión que tuvimos hoy, te hice sobrepensar, te hice sentir mal
+        y de nuevo le di un golpe más a nuestra confianza como pareja :(. Quiero que de todo corazón me disculpes
+        y quiero que sepas que nunca me quiero alejar de ti, jamás querré separarme de ti. Siento si quiera haberlo
+        dado a entender. Quiero que sepas que aprecio mucho todo lo que eres, el montón de bueno y lo poco que nos diferencia
+        que nos hace quienes somos como pareja. Quiero cambiar, no quiero que vuelvas a decir que volvemos a lo mismo siempre. Quiero que 
+        tengas la certeza que estoy activamente haciendo algo por cambiar y no quiero repetir estos errores de nuevo. Tu eres mi vida, mi todo y mi mejor amiga.
+    </p>
+
+    <h2>Aún así, Quieres ser mi Valentine? ❤️</h2>
+
+    <div class="buttons">
+        <button id="yesBtn">Sí ❤️</button>
+        <button id="noBtn">No 💔</button>
+    </div>
+
+    <div id="successMessage" class="hidden success">
+        O SEA QUE SÍ ME AMAS? 🥹❤️‍🩹 Escríbeme para que ponga feliz 😔. Te amo nena ❤️
+    </div>
+
+</div>
+
+<script>
+let noBtn = document.getElementById("noBtn");
+let yesBtn = document.getElementById("yesBtn");
+let successMessage = document.getElementById("successMessage");
+let mainImage = document.getElementById("mainImage");
+let paragraph = document.querySelector("p");
+let question = document.querySelector("h2");
+let buttons = document.querySelector(".buttons");
+
+let noTexts = [
+    "En serio? :(",
+    "Yyyyyy",
+    "Viste como no me amas? 😞",
+    "Segura? 👀",
+    "Tu me odias verdad?",
+    "Viste como son?",
+    "Aunque sea te está diviertiendo? 😭",
+    "Última oportunidad o me odias",
+    "Yyyy ya estuvo 😾"
+];
+
+let noClickCount = 0;
+
+let yesSize = 22;
+let noSize = 22;
+
+noBtn.addEventListener("click", function() {
+
+    if (noClickCount < noTexts.length) {
+        noBtn.textContent = noTexts[noClickCount];
+        noClickCount++;
+    }
+
+    yesSize += 4;
+    yesBtn.style.fontSize = yesSize + "px";
+
+    if (noSize > 12) {
+        noSize -= 3;
+        noBtn.style.fontSize = noSize + "px";
+    }
+});
+
+yesBtn.addEventListener("click", function() {
+
+    paragraph.style.display = "none";
+    question.style.display = "none";
+    buttons.style.display = "none";
+
+    mainImage.src = "DSC_0002.jpg";
+    successMessage.classList.remove("hidden");
+
+    for (let i = 0; i < 40; i++) {
+        let heart = document.createElement("div");
+        heart.innerHTML = "❤️";
+        heart.style.position = "fixed";
+        heart.style.left = Math.random() * 100 + "vw";
+        heart.style.top = "-20px";
+        heart.style.fontSize = (Math.random() * 15 + 15) + "px";
+        heart.style.animation = "fall 4s linear forwards";
+        document.body.appendChild(heart);
+
+        setTimeout(() => {
+            heart.remove();
+        }, 4000);
+    }
+});
+</script>
+
+
+</body>
+</html>
